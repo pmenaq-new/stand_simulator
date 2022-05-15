@@ -27,9 +27,15 @@ def LobDyn(state, t):
 
 
 t = np.arange(1, 31, 1)
-state0 = [1.3, 1600, 1600/40000, 0]
 q = 0.0224452084897823
+c2 = 15582
 p = 1
+H0 = 1.3
+N0 = 2600
+G0 = 0
+O0 = 1-(1 - min([N0/c2, 1]))**2.4
+
+state0 = [H0, N0, O0, G0]
 statest = odeint(LobDyn, state0, t, full_output=True)[0]
 
 fig ,ax = plt.subplots(2,2,figsize=(8,8))
